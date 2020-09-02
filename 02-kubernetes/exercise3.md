@@ -20,8 +20,24 @@ version.BuildInfo{Version:"v3.2.1", GitCommit:"fe51cd1e31e6a202cba7dead9552a6d41
 Lets add an repository! Use the repo located at https://kubernetes-charts.storage.googleapis.com
 
 Use the helm commamd add repo.
+Call this repo stable.
 After you added it, use the search command and see what is available.
 
 # 2
 
-TODO finish
+Now lets install a helm chart into our cluster.
+Install the mysql chart from the stable repo.
+
+Check out what happens!
+
+# 3
+
+Try to see all releases with the list command.
+
+# 4
+
+Uninstall the helm chart
+
+# 5
+
+Check the [solutions](solutions/3.md) `solutions/3.md`
