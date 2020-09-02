@@ -1,0 +1,14 @@
+stages:
+  - lint
+
+lint:
+  stage: lint
+  image:
+    name: markdownlint/markdownlint:latest
+    entrypoint: [""]
+  # https://github.com/markdownlint/markdownlint/blob/master/docs/RULES.md 
+  script: 
+    - mdl --style all --warnings -r ~MD013 README.md
+    - mdl --style all --warnings -r ~MD013,~MD040,~MD031,~MD034,~MD033 01-containers/
+  tags:
+    - gke-admin
