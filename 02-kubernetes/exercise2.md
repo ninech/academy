@@ -28,7 +28,8 @@ Check out this [file](templates/2/3.yaml) `templates/2/3.yaml`.
 
 Here you will find TODO comments instructing you what to do.
 You can see the rough architecture here:
-https://raw.githubusercontent.com/dockersamples/example-voting-app/master/architecture.png
+
+![Architecture](https://raw.githubusercontent.com/dockersamples/example-voting-app/master/architecture.png)
 
 Use your own created namespace for this exercise still.
 The db pod should use a persistent storage.
