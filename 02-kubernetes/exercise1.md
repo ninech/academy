@@ -31,7 +31,7 @@ $ kubectl get all
 ```
 
 Lets create our own namespace.
-This is a shared cluster, so please use the following convention: academy-<your first name> i.e. academy-max
+This is a shared cluster, so please use the following convention: academy- firstname i.e. academy-max
 We need to use the kubectl create command for this.
 Hint: Use the -h flag for a example.
 
