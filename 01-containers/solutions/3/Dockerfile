@@ -13,8 +13,8 @@ CMD ["hello.py", "/etc"]
 
 # RUN:      docker run -p 80:80 test:1.0
 
-# TAG:      docker tag test:1.0 gcr.io/nine-academy-854265/test:1.0$
+# TAG:      docker tag test:1.0 eu.gcr.io/nine-academy-854265/test:1.0
 
-# PUSH:     docker push gcr.io/nine-academy-854265/test:1.0
+# PUSH:     docker push eu.gcr.io/nine-academy-854265/test:1.0
 
-# GCR RUN:  docker run gcr.io/nine-academy-854265/test:1.0 
+# GCR RUN:  docker run eu.gcr.io/nine-academy-854265/test:1.0 
