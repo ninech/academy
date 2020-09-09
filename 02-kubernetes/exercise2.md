@@ -50,7 +50,7 @@ Delete everything again when you are done.
 Hint: You can use the delete command with the -f flag!
 ```
 $ kubectl delete -f 3.yaml
-``
+```
 
 # 5
 
