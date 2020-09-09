@@ -133,3 +133,6 @@ Delete the the deployment.
 # Solutions
 
 You can find the solutions [here](solutions/1.md) `solutions/1.md`.
+
+
+[Back to Overview](https://github.com/ninech/academy)
