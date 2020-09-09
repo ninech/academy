@@ -47,6 +47,11 @@ Add clusterIP: None under the type and apply it again. What difference do you se
 
 Delete everything again when you are done.
 
+Hint: You can use the delete command with the -f flag!
+```
+$ kubectl delete -f 3.yaml
+``
+
 # 5
 
 The last thing we have to look at are ConfigMaps.
@@ -61,7 +66,7 @@ Use the create command to create it. Hint: Use --from-file and give the txt file
 Delete the ConfigMap above and create another one. This time use ---from-literal!
 Use the key city and as a value a city of your choice.
 
-Create a Pod from this file and check its logs to see if your city is in the env variables.
+Create a Pod from this [file](templates/2/6.yaml) `templates/2/6.yaml` and check its logs to see if your city is in the env variables.
 
 # 7
 
@@ -72,7 +77,7 @@ Delete the pod and configmap.
 You can find the solutions [here](solutions/2.md) `solutions/2.md`.
 
 
-# 9 Optional
+# 9
 
 If you finish ahead of time, you can do this optional exercise.
 This is a similiar exercise to # 3.
@@ -92,7 +97,7 @@ Sadly the containers itself are having trouble saving the data in the DB. So if 
 
 You can find the solutions [here](solutions/9.yaml) `solutions/9.yaml`.
 
-# 4
+# 10 
 
 Clean up by deleting everything you just created.
 
