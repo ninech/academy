@@ -37,7 +37,7 @@ Open the Dockerfile in the folder.
 You can see that there are comments describing what the direct line under it does.
 There is also a small python file, which just prints all files of the directory given in the parameter.
 
-Try to implememt the Dockerfile and get it to run. If sucessfully built and ran, you should see some output in your console.
+Try to implement the Dockerfile and get it to run. If sucessfully built and ran, you should see some output in your console.
 
 For the second part of the exercise, we will push the image you just implemented to Google Container Registry(GCR).
 You will have access to GCR in your nine managed GKE cluster.
