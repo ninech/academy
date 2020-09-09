@@ -13,7 +13,7 @@ Check out what the the deployment created.
 
 Now lets expose our deployment to the outside world.
 
-Use the kubectl expose command. Create a LoadBalancer service!
+Use the kubectl expose command. Create a LoadBalancer service! Not a ClusterIP service!!
 
 Check the service out and try to open the application in the browser or use curl.
 
