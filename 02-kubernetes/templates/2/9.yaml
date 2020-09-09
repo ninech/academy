@@ -1,0 +1,205 @@
+# redis
+--- 
+apiVersion: v1
+kind: Service
+metadata:
+  # name the service "redis" and use the label "app: redis"
+  
+spec:
+  # Type ClusterIP
+
+  clusterIP: None
+  ports:
+  - name: redis-service
+    port: 6379
+    targetPort: 6379
+  # Use selector "app: redis"
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  # name the deplyoment "redis" and use the label "app: redis"
+
+spec:
+  # run 1 instance
+  
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      # label the containers with app: redis
+      
+    spec:
+      containers:
+      - name: redis
+        # use image redis:alpine
+
+        ports:
+        - containerPort: 6379
+          name: redis
+
+# db
+--- 
+# Use the right apiversion and kind for the db service
+
+
+metadata: 
+  # Label the service with app: db and give it the name db
+
+
+spec: 
+  # Use ClusterIP Type
+
+  clusterIP: None
+  ports: 
+  - name: db
+    port: 5432
+    targetPort: 5432
+  # Select the Pods from the label app: db
+  
+  
+---
+apiVersion: apps/v1
+# Use the right kind for deploying Pods
+
+metadata:
+  name: db
+  labels:
+    app: db
+spec:
+  # Set the replication count to 1
+  
+  selector:
+    matchLabels:
+      app: db
+  template:
+    metadata:
+      # Label the Pods with app: db
+
+
+    spec:
+      containers:
+      - name: db
+        image: postgres:9.4
+        env:
+        - name: PGDATA
+          value: /var/lib/postgresql/data/pgdata
+        - name: POSTGRES_USER
+          value: postgres
+        - name: POSTGRES_PASSWORD
+          value: postgres
+        ports:
+        - containerPort: 5432
+          name: db
+        volumeMounts:
+        - name: db-data
+          mountPath: /var/lib/postgresql/data
+      volumes:
+      - name: db-data
+        persistentVolumeClaim:
+          claimName: postgres-pv-claim
+---
+apiVersion: v1
+# Use the right kind to claim a PersistentVolume
+kind: 
+metadata:
+  name: postgres-pv-claim
+spec:
+  storageClassName: standard
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+
+# result
+---
+# Create a Service Type LoadBalancer named result and give it the label app: result.
+# the selector should be app: result
+# name the port result-service and Use port 5001 and targetPort 80
+
+
+---
+# Create a Deployment with the name result and the label app: result
+# Set replica to 1
+# Set the selector matchlabels to app: result
+# The Pods underneath should have the label app: result and be named result
+# Use image dockersamples/examplevotingapp_result:before
+# Use containerPort 80 and give it a name result
+
+
+
+# vote
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vote
+  labels:
+    apps: vote
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 5000
+      targetPort: 80
+      name: vote-service
+  selector:
+    app: vote
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vote
+  labels:
+    app: vote
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: vote
+  template:
+    metadata:
+      labels:
+        app: vote
+    spec:
+      containers:
+      - name: vote
+        image: dockersamples/examplevotingapp_vote:before
+        ports:
+        - containerPort: 80
+          name: vote
+
+# worker
+--- 
+apiVersion: v1
+kind: Service
+metadata: 
+  labels: 
+    apps: worker
+  name: worker
+spec: 
+  clusterIP: None
+  selector: 
+    app: worker
+--- 
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  labels: 
+    app: worker
+  name: worker
+spec: 
+  replicas: 1
+  selector:
+    matchLabels:
+      app: worker
+  template: 
+    metadata: 
+      labels: 
+        app: worker
+    spec: 
+      containers: 
+      - image: dockersamples/examplevotingapp_worker
+        name: worker

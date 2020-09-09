@@ -21,29 +21,31 @@ Check the service out and try to open the application in the browser or use curl
 
 Delete the deployment and the service from above.
 
-# 3 
+# 3
 
 Until now, we worked with simple applications. Now, it is time for a big exercise.
 Check out this [file](templates/2/3.yaml) `templates/2/3.yaml`.
 
-Here you will find TODO comments instructing you what to do.
-You can see the rough architecture here:
-https://raw.githubusercontent.com/dockersamples/example-voting-app/master/architecture.png
+This is a dockersamples demo app from the dockercon 2018.
+The application has 3 microservices called db, words and web.
+It generates setences using the words in the db.
 
+We assume that the app and the containers are configured properly.
+
+Your job is to finish all the instructions that are in the TODO comments.
 Use your own created namespace for this exercise still.
-The db pod should use a persistent storage.
-The redis pod should not have persistent storage.
-Voting and result app should be reachable from the outside.
 
-There are solutions (here)[], but we really recommend to try to do it on your own(google first!).
+If everything is working properly, words should appear in your browser.
+You should also see the IP where the word is coming from.
+Which IP is that?
 
-Apply the file and check out what was created.
-
-If everything is working properly, you should be able to vote and check the result in your browser.
 
 # 4
 
-Clean up by deleting everything you just created :D.
+Now lets delete everything again you created and change the Service db and web a bit.
+Add clusterIP: None under the type and apply it again. What difference do you see in the browser? What are those IPs?
+
+Delete everything again when you are done.
 
 # 5
 
@@ -65,6 +67,31 @@ Create a Pod from this file and check its logs to see if your city is in the env
 
 Delete the pod and configmap.
 
-# 5
+# 8
 
 You can find the solutions [here](solutions/2.md) `solutions/2.md`.
+
+
+# 9 Optional
+
+If you finish ahead of time, you can do this optional exercise.
+This is a similiar exercise to # 3.
+If you have your own containers ready, you can also try to get your own app to run on the cluster instead of this exercise.
+
+Check out this [file](templates/2/9.yaml) `templates/2/9.yaml`.
+
+Here you will find TODO comments instructing you what to do.
+You can see the rough architecture here:
+https://raw.githubusercontent.com/dockersamples/example-voting-app/master/architecture.png
+Use your own created namespace for this exercise still.
+Voting and result app should be reachable from the outside.
+
+Apply the file and check out what was created.
+
+Sadly the containers itself are having trouble saving the data in the DB. So if everything looks good in the cluster and you can reach the 2 pages, you can assume you did it correctly. If you vote, this app will probably not react :/
+
+You can find the solutions [here](solutions/9.yaml) `solutions/9.yaml`.
+
+# 4
+
+Clean up by deleting everything you just created.

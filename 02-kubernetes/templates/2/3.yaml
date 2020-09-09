@@ -1,190 +1,103 @@
----
-apiVersion: v1
-kind: # TODO: Choose the correct volume type
+apiVersion: apps/v1beta
+# Use the kind Deployment
+
 metadata:
-  name: db-volume
-  # TODO: Add correct namespace
-  labels:
-    type: local
-spec:
-  storageClassName: manual
-  capacity:
-    storage: 100Mi
-  accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: "/mnt/data"
----
-apiVersion: v1
-kind: # TODO: Choose the correct volume claim type
-metadata:
-  name: db-claim
-  # TODO: Add correct namespace
-spec:
-  storageClassName: manual
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 100Mi
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  labels:
-    app: db
   name: db
-  # TODO: Add correct namespace
+  # Label the deployment with app: words-db
+
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: db
   template:
     metadata:
-      labels:
-        app: db
+      # label the pods with app: words-db
+
     spec:
-      volumes:
-      - name: db-storage
-        persistentVolumeClaim:
-          claimName: db-claim
       containers:
-      - image: postgres:9.4
-        name: postgres
+      # name the pods db
+      - name: 
+        # use the image dockersamples/k8s-wordsmith-db
+
         ports:
         - containerPort: 5432
-          name: postgres
-        volumeMounts:
-        - mountPath: /var/lib/postgresql/data
-          name: db-storage
+          name: db
 ---
 apiVersion: v1
-kind: Service
+# Use the kind service
 metadata:
-  labels:
-    app: db
   name: db
-  # TODO: Add correct namespace
+  # Label this service words-db
+
 spec:
-  type: ClusterIP
   ports:
-  - name: "db-service"
-    port: 5432
-    targetPort: 5432
-  selector:
-    app: db
+    - port: 5432
+      targetPort: 5432
+      name: db
+  # Select the pods from the deployment above. Use the app: selector for this!
+  
+  # Use the type ClusterIP
+
 ---
-apiVersion: apps/v1
-kind: Deployment
+#######################################################
+# Use the right apiversion and kind for deploying the second microservice
+
+
 metadata:
-  labels:
-    app: redis
-  name: redis
-  # TODO: Add correct namespace
+  name: words
+  # Label it with "app: words-api"
+  
+
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: redis
+  # We need 5 different replicas of the container
+  
   template:
     metadata:
-      labels:
-        app: redis
+      # Label the pods with "words-api"
+
+
     spec:
-      # TODO: Create a new volume (not-persistent, name: redis-data)
       containers:
-      - image: redis:alpine
-        name: redis
+        # name the pods "words" and use the image dockersamples/k8s-wordsmith-api
+      - 
+
         ports:
-        - containerPort: 6379
-          name: redis
-        volumeMounts:
-        - mountPath: /data
-          name: redis-data
+        - containerPort: 8080
+          name: api
 ---
-apiVersion: v1
-kind: Service
+# Use the right apiversion and type for a service
+
 metadata:
-  labels:
-    app: redis
-  name: redis
-  # TODO: Add correct namespace
+  name: words
+  # Label it with "app: words-api"
+
+
 spec:
-  type: ClusterIP
   ports:
-  - name: "redis-service"
-    port: 6379
-    targetPort: 6379
-  selector:
-    app: redis
+    - port: 8080
+      targetPort: 8080
+      name: api
+  # Use a the selector from the deployment above
+
+
+  # Use the type ClusterIP
+  
 ---
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  labels:
-    app: result
-  name: result
-  # TODO: Add correct namespace
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: result
-  template:
-    metadata:
-      labels:
-        app: result
-    spec:
-      containers:
-      - image: dockersamples/examplevotingapp_result:latest
-        name: result
-        ports:
-        - containerPort: 80
-          name: result
+#######################################################
+# Write your own Deployment object with the following attributes
+#       name = web
+#       label: app = words-web
+# The underlying pods should have the following attributes
+#       labels: app = words-web
+#       name = web
+#       image= dockersamples/k8s-wordsmith-web
+#       use containerPort = 80
+#       name port = words-web
+
+
 ---
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    app: result
-  name: result
-  # TODO: Add correct namespace
-spec:
-  # TODO: Create a new LoadBalancer (port: 5001, targetPort: 80, name: result-service)
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  labels:
-    app: vote
-  name: vote
-  # TODO: Add correct namespace
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: vote
-  template:
-    metadata:
-      labels:
-        app: vote
-    spec:
-      containers:
-      - image: dockersamples/examplevotingapp_vote:latest
-        name: vote
-        ports:
-        - containerPort: 80
-          name: vote
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    app: vote
-  name: vote
-  # TODO: Add correct namespace
-spec:
-  # TODO: Create a new LoadBalancer (port: 5000, targetPort: 80, name: vote-service)
----
-# TODO: Create the worker deployment (image: dockersamples/examplevotingapp_worker:latest, name: worker)
+# Write your own Service with the following attributes:
+#       name = web
+#       labels: app= words-web
+#       type: LoadBalancer
+#       selector: app=words-web
+#       ports: Container(Target) Port 80 to port 8081
+#       name port web
+

@@ -1,217 +1,104 @@
-# redis
---- 
-apiVersion: v1
-kind: Service
-metadata: 
-  labels: 
-    app: redis
-  name: redis
-spec: 
-  clusterIP: None
-  ports:
-  - name: redis-service
-    port: 6379
-    targetPort: 6379
-  selector: 
-    app: redis
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: redis
-  labels:
-    app: redis
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: redis
-  template:
-    metadata:
-      labels:
-        app: redis
-    spec:
-      containers:
-      - name: redis
-        image: redis:alpine
-        ports:
-        - containerPort: 6379
-          name: redis
-
-# db
---- 
-apiVersion: v1
-kind: Service
-metadata: 
-  labels: 
-    app: db
-  name: db
-spec: 
-  clusterIP: None
-  ports: 
-  - name: db
-    port: 5432
-    targetPort: 5432
-  selector: 
-    app: db
----
-apiVersion: apps/v1
+apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
   name: db
   labels:
-    app: db
+    app: words-db
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: db
   template:
     metadata:
       labels:
-        app: db
+        app: words-db
     spec:
       containers:
       - name: db
-        image: postgres:9.4
-        env:
-        - name: PGDATA
-          value: /var/lib/postgresql/data/pgdata
-        - name: POSTGRES_USER
-          value: postgres
-        - name: POSTGRES_PASSWORD
-          value: postgres
+        image: dockersamples/k8s-wordsmith-db
         ports:
         - containerPort: 5432
           name: db
-        volumeMounts:
-        - name: db-data
-          mountPath: /var/lib/postgresql/data
-      volumes:
-      - name: db-data
-        persistentVolumeClaim:
-          claimName: postgres-pv-claim
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: postgres-pv-claim
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
-
-# result
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: result
+  name: db
   labels:
-    app: result
+    app: words-db
 spec:
-  type: LoadBalancer
   ports:
-  - port: 5001
-    targetPort: 80
-    name: result-service
+    - port: 5432
+      targetPort: 5432
+      name: db
   selector:
-    app: result
+    app: words-db
+  type: ClusterIP
 ---
-apiVersion: apps/v1
+#######################################################
+apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: result
+  name: words
   labels:
-    app: result
+    app: words-api
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: result
+  replicas: 5
   template:
     metadata:
       labels:
-        app: result
+        app: words-api
     spec:
       containers:
-      - name: result
-        image: dockersamples/examplevotingapp_result:before
+      - name: words
+        image: dockersamples/k8s-wordsmith-api
         ports:
-        - containerPort: 80
-          name: result
-
-# vote
+        - containerPort: 8080
+          name: api
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: vote
+  name: words
   labels:
-    apps: vote
+    app: words-api
 spec:
-  type: LoadBalancer
   ports:
-    - port: 5000
+    - port: 8080
+      targetPort: 8080
+      name: api
+  selector:
+    app: words-api
+  type: ClusterIP
+---
+#######################################################
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: web
+  labels:
+    app: words-web
+spec:
+  template:
+    metadata:
+      labels:
+        app: words-web
+    spec:
+      containers:
+      - name: web
+        image: dockersamples/k8s-wordsmith-web
+        ports:
+        - containerPort: 80
+          name: words-web
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web
+  labels:
+    app: words-web
+spec:
+  ports:
+    - port: 8081
       targetPort: 80
-      name: vote-service
+      name: web
   selector:
-    app: vote
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: vote
-  labels:
-    app: vote
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: vote
-  template:
-    metadata:
-      labels:
-        app: vote
-    spec:
-      containers:
-      - name: vote
-        image: dockersamples/examplevotingapp_vote:before
-        ports:
-        - containerPort: 80
-          name: vote
-
-# worker
---- 
-apiVersion: v1
-kind: Service
-metadata: 
-  labels: 
-    apps: worker
-  name: worker
-spec: 
-  clusterIP: None
-  selector: 
-    app: worker
---- 
-apiVersion: apps/v1
-kind: Deployment
-metadata: 
-  labels: 
-    app: worker
-  name: worker
-spec: 
-  replicas: 1
-  selector:
-    matchLabels:
-      app: worker
-  template: 
-    metadata: 
-      labels: 
-        app: worker
-    spec: 
-      containers: 
-      - image: dockersamples/examplevotingapp_worker
-        name: worker
+    app: words-web
+  type: LoadBalancer

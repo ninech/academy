@@ -32,11 +32,18 @@ You can see that there are comments describing what the direct line under it doe
 There is also a small python file, which just prints all files of the directory given in the parameter.
 
 Try to implememt the Dockerfile and get it to run. If sucessfully built and ran, you should see some output in your console.
+
 For the second part of the exercise, we will push the image you just implemented to Google Container Registry(GCR).
 You will have access to GCR in your nine managed GKE cluster.
 For this make sure to have [gcloud](https://cloud.google.com/sdk/install) installed as you will need it eitherway later.
 We recommend using the installer: https://cloud.google.com/sdk/docs/downloads-interactive
 You can find all the information to push here: https://support.nine.ch/a/yyvvFT5dhG4
+
+To configure the access to your GCR:
+```
+$ gcloud auth configure-docker
+```
+
 When you pushed your image, try to get it to run from GCR.
 
 ## 4. Solutions
