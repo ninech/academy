@@ -72,3 +72,6 @@ To additionally remove any stopped containers and all unused images (not just da
 ```
 docker system prune -a
 ```
+
+
+[Back to Overview](../README.md)

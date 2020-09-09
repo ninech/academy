@@ -5,7 +5,7 @@ This is the repo for all the nine kubernetes academy exercises.
 It is recommend to pull(or download) this repo locally to get the template files.
 To view the exercises and solutions, we recommend using the browser.
 
-### Presentations:
+Presentations:
 
 * [Docker](https://docs.google.com/presentation/d/1ceTsTiMjD_jv_5-TlIYG3bMvTYibXfDYQGqAbXFcjGc/edit?usp=sharing)
 
