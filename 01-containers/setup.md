@@ -12,12 +12,6 @@ Follow the guides and install docker for your distro/OS.
 
 [Windows](https://docs.docker.com/docker-for-windows/install/)
 
-If you do not want to use sudo all the time, you can add your user to the docker group:
-```
-sudo usermod -a -G docker ${USER}
-```
-You need to relog with your user for this to take effect.
-
 ## Test your installation
 
 Open a terminal and run the following docker command. You should get a similar output.
