@@ -12,14 +12,16 @@ Presentations:
 [Kubernetes](https://docs.google.com/presentation/d/15GHQEEX5YhiesBcSTMYAzKEkOnhyoZuoBuN7htY7Was/edit?usp=sharing)
 
 
-## Exercises:
+### Exercises Docker:
 
 * [Setup Docker](01-containers/setup.md)
 * [Exercise 1: Docker](01-containers/exercise.md)
+
+### Exercises Kubernetes:
 
 * [Setup Kubernetes](02-kubernetes/setup.md)
 * [Exercise 2: Kubernetes part 1](02-kubernetes/exercise1.md)
 * [Exercise 3: Kubernetes part 2](02-kubernetes/exercise2.md)
 
-* Optional:
+### Optional:
 * [Exercise 4: Helm](02-kubernetes/exercise3.md)
