@@ -1,5 +1,7 @@
 # nine Kubernetes Academy
 
+TEST
+
 This is the repo for all the nine kubernetes academy exercises.
 
 It is recommend to pull(or download) this repo locally to get the template files.
