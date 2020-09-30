@@ -54,7 +54,7 @@ There you can see the Google Cloud Platform and what it offers. We recommend you
 On runway you will see a section called "Logging into the cluster" under the Google Kubernetes Engine tab.
 Follow the steps there.
 
-# Install kubectx and kubens
+# [Linux & Mac]Install kubectx and kubens
 
 Finally the last piece that is missing:
 https://github.com/ahmetb/kubectx
