@@ -100,7 +100,7 @@ When you described the deployment and the replicaset, you might have seen the re
 Scale the deployment to 3 or more replicas and check out what happens to three ressources you described above.
 Use the scale kubectl command!
 
-#  9
+# 9
 
 K8s is supposed to be self healing, right? Lets prove it. Delete any of the pods of the deployment.
 What happens? Checkout the events aswell the events with kubectl get events.
