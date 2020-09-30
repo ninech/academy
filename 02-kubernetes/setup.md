@@ -16,7 +16,7 @@ Install kubectl with the following command:
 $ gcloud components install kubectl
 ```
 
-# kubectl autocomplete and alias
+# [Linux & Mac]kubectl autocomplete and alias
 
 We recommend autocomplete since it makes your live that much easier!
 
