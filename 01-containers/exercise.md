@@ -45,6 +45,20 @@ For this make sure to have [gcloud](https://cloud.google.com/sdk/install) instal
 We recommend using the installer: https://cloud.google.com/sdk/docs/downloads-interactive
 You can find all the information to push here: https://support.nine.ch/a/yyvvFT5dhG4
 
+Login to gcloud with your ninegcp.ch account:
+
+```
+$ gcloud auth login
+```
+
+A browser windows should automatically open up where you can now log in with your <name>@ninegcp.ch account that we sent you before the course.
+
+After logging in, also make sure to set your project to the one of the academy. You can find the project ID on [runway](https://runway.nine.ch).
+
+```
+$ gcloud config set project project_id
+```
+
 To configure the access to your GCR:
 ```
 $ gcloud auth configure-docker
