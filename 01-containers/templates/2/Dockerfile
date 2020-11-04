@@ -1,8 +1,8 @@
 FROM golang:alpine
 WORKDIR /app
-COPY . /app
+COPY . .
 # creates the executable named goapp
-RUN cd /app && go build -o goapp
+RUN go build -o goapp
 CMD [ "./goapp" ]
 
 # If you run docker build on this file, you should notice that it is quite big. Especially for a small hello world app.

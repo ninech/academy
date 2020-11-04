@@ -1,6 +1,6 @@
 FROM gcr.io/distroless/python3
 WORKDIR /app
-COPY . /app
+COPY . .
 CMD ["hello.py", "/etc"]
 
 # BUILD:    docker build --tag test:1.0 .

@@ -1,12 +1,12 @@
 # build stage
 FROM golang:alpine AS builder
-COPY . /src/
+COPY . /src
 RUN cd /src && go build -o goapp
 
 # final stage
 FROM gcr.io/distroless/static
 WORKDIR /app
-COPY --from=builder /src/goapp /app/
+COPY --from=builder /src/goapp .
 CMD ["./goapp"]
 
 
