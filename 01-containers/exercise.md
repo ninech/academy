@@ -17,7 +17,7 @@ In this exercise, you will learn the difference and benefits of using multi-stag
 Open the exercise 2 [folder](templates/2) `templates/2`.
 
 You may find a `hello.go` and a `Dockerfile`.
-If you have the [Go toolchain](https://golang.org/doc/install) installed, you can run the go file to see what it does by executing `go run hello.go` or maybe you might understand it by just looking at the code.
+The go file just prints "Hello world".
 
 Open the Dockerfile and make sure you understand what it does.
 

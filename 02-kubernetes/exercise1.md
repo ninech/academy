@@ -62,14 +62,19 @@ https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#syntax
 
 If you do a kubectl get all, you obviously wont see anything, so lets create a pod!
 
-We will need the kubectl run command for this. Again, like with every command check out kubectl run -h!
+We will need the kubectl run command for this. Again, like with every command check out kubectl run -h flag!
+
+```
+kubectl run -h
+```
+
 Use the following parameters:
 --image=nginx
 --port=80
 --restart=Never
 
 List the detail of the pod with the get command. Maybe try out the flag -o wide!
-Also describe the pod!
+Also describe the pod using the kubectl describe command!
 
 # 5
 
