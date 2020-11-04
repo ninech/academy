@@ -1,3 +1,16 @@
+# Install gcloud
+
+Make sure to have [gcloud](https://cloud.google.com/sdk/install) installed as you will need it later.
+We recommend using the installer: https://cloud.google.com/sdk/docs/downloads-interactive
+
+Login to gcloud with your ninegcp.ch account:
+
+```
+$ gcloud auth login
+```
+
+A browser window should automatically open up where you can now log in with your <name>@ninegcp.ch account that we sent you before the course.
+
 # Install kubectl
 
 To interact with a kubernetes cluster in a good and not clicky way, you should always use kubectl.
@@ -46,13 +59,8 @@ $ complete -F __start_kubectl k
 Head over to runway, nine's UI of the nine managed GKE cluster, and log yourself in.
 https://runway.ninegcp.ch/
 
-There are different tabs. Go check them out! You can see what nine managed GKE offers.
-
-After you ready to move on, go over to https://console.cloud.google.com/ and log yourself in with the ninegcp account.
-There you can see the Google Cloud Platform and what it offers. We recommend you check it out a bit!
-
 On runway you will see a section called "Logging into the cluster" under the Google Kubernetes Engine tab.
-Follow the steps there.
+Execute the commands as shown in the section.
 
 # [Linux & Mac]Install kubectx and kubens
 
