@@ -47,7 +47,6 @@ metadata:
     app: db
   name: db
 spec: 
-  clusterIP: None
   ports: 
   - name: db
     port: 5432

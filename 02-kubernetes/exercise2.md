@@ -42,8 +42,8 @@ Which IP is that?
 
 # 4
 
-Now lets delete everything again you created and change the Service db and web a bit.
-Add clusterIP: None under the type and apply it again. What difference do you see in the browser? What are those IPs?
+Now lets delete everything again you created and change the Service *db* and *words* a bit. The two ClusterIP type services.
+Add clusterIP: None under the spec.type and apply it again. What difference do you see in the browser? What are those IPs in the words?
 
 Delete everything again when you are done.
 

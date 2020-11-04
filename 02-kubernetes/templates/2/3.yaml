@@ -1,4 +1,4 @@
-apiVersion: apps/v1beta
+apiVersion: apps/v1
 # Use the kind Deployment
 
 metadata:
@@ -6,6 +6,9 @@ metadata:
   # Label the deployment with app: words-db
 
 spec:
+  selector:
+    matchLabels:
+      app: words-db
   template:
     metadata:
       # label the pods with app: words-db
@@ -47,7 +50,10 @@ metadata:
 
 spec:
   # We need 5 different replicas of the container
-  
+
+  selector:
+    matchLabels:
+      # Use the same label from the templated pods
   template:
     metadata:
       # Label the pods with "words-api"
@@ -85,6 +91,7 @@ spec:
 #       name = web
 #       label: app = words-web
 # The underlying pods should have the following attributes
+#       selecttor = matchlabels: app: words-web
 #       labels: app = words-web
 #       name = web
 #       image= dockersamples/k8s-wordsmith-web
