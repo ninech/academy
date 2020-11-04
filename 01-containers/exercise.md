@@ -27,7 +27,7 @@ After you have found the size, change the Dockerfile to use multi-stage builds. 
 
 What other benefits can you think of when using multi-stage containers?
 
-## 3. Optional: Write it yourself
+## 3. Write it yourself
 
 Open the exercise 3 [folder](templates/3) `templates/3`.
 
