@@ -1,8 +1,3 @@
-# Important links
-
-If you get stuck anywhere, try to find help here or ask the teacher:
-https://support.nine.ch/categories/managed-gke
-
 # 1
 
 Lets take a look at services. First of we need to create a deployment. Take a look at this [file](templates/2/1.yaml) `templates/2/1.yaml`.
