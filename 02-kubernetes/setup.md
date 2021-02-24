@@ -70,7 +70,7 @@ https://github.com/ahmetb/kubectx
 Install it and try it with the following command:
 ```
 $ kubectx
-gke_nine-academy-854265_europe-west6_academy
+gke_nine-XXXXXX_europe-west6_academy
 ```
 
 # Continue to the exercises
