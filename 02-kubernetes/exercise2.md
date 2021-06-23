@@ -34,51 +34,38 @@ If everything is working properly, words should appear in your browser.
 You should also see the IP where the word is coming from.
 Which IP is that?
 
-
 # 4
-
-Now lets delete everything again you created and change the Service *db* and *words* a bit. The two ClusterIP type services.
-Add clusterIP: None under the spec.type and apply it again. What difference do you see in the browser? What are those IPs in the words?
-
-Delete everything again when you are done.
-
-Hint: You can use the delete command with the -f flag!
-```
-$ kubectl delete -f 3.yaml
-```
-
-# 5
 
 The last thing we have to look at are ConfigMaps.
 
-Check out the [file](templates/2/5.txt) `templates/2/5.txt`.
+Check out the [file](templates/2/4.txt) `templates/2/4.txt`.
 We want to use that file as the data of our ConfigMap.
 
 Use the create command to create it. Hint: Use --from-file and give the txt file as a parameter.
 
-# 6
+# 5
 
-Delete the ConfigMap above and create another one. This time use ---from-literal!
+Delete the ConfigMap above and create another one with the same name `cm`. This time use ---from-literal!
 Use the key city and as a value a city of your choice.
 
-Create a Pod from this [file](templates/2/6.yaml) `templates/2/6.yaml` and check its logs to see if your city is in the env variables.
+Create a Pod from this [file](templates/2/5.yaml) `templates/2/5.yaml` and check its logs to see if your city is in the env variables.
 
-# 7
+# 6
 
 Delete the pod and configmap.
 
-# 8
+# 7
 
 You can find the solutions [here](solutions/2.md) `solutions/2.md`.
 
 
-# 9
+# 8
 
 If you finish ahead of time, you can do this optional exercise.
 This is a similiar exercise to # 3.
 If you have your own containers ready, you can also try to get your own app to run on the cluster instead of this exercise.
 
-Check out this [file](templates/2/9.yaml) `templates/2/9.yaml`.
+Check out this [file](templates/2/8.yaml) `templates/2/8.yaml`.
 
 Here you will find TODO comments instructing you what to do.
 You can see the rough architecture here:
@@ -90,9 +77,9 @@ Apply the file and check out what was created.
 
 Sadly the containers itself are having trouble saving the data in the DB. So if everything looks good in the cluster and you can reach the 2 pages, you can assume you did it correctly. If you vote, this app will probably not react :/
 
-You can find the solutions [here](solutions/9.yaml) `solutions/9.yaml`.
+You can find the solutions [here](solutions/8.yaml) `solutions/8.yaml`.
 
-# 10 
+# 9
 
 Clean up by deleting everything you just created.
 
