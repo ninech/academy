@@ -62,7 +62,11 @@ $ sudo groupadd docker
 $ sudo usermod -aG docker $USER
 ```
 
-You will need to relog your user!
+You will need to relog your user or do the follwing:
+```
+$ newgrp docker
+```
+
 Be careful, as this gives the specified user root equivalent privileges!
 
 Verify:
