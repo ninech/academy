@@ -17,14 +17,14 @@ Follow the guides and install docker for your distro/OS.
 Open a terminal and run the following docker command. You should get a similar output.
 
 ```
-$ docker --version
+$ sudo docker --version
 Docker version 19.03.5, build 633a0ea
 ```
 
 Try to run the hello-world image:
 
 ```
-$ docker run hello-world
+$ sudo docker run hello-world
 
 Unable to find image 'hello-world:latest' locally
 latest: Pulling from library/hello-world
@@ -40,16 +40,36 @@ This message shows that your installation appears to be working correctly.
 Try to list the image:
 
 ```
-docker image ls
+sudo docker image ls
 ```
 
 Try to list the container itself:
 
 ```
-$ docker ps --all
+$ sudo docker ps --all
 
 CONTAINER ID     IMAGE           COMMAND      CREATED            STATUS
 54f4984ed6a8     hello-world     "/hello"     20 seconds ago     Exited (0) 19 seconds ago
 ```
+
+## Sudo
+
+As you noticed, the docer commands require you to be root.
+To not type sudo always, considering doing the following on Linux:
+
+```
+$ sudo groupadd docker
+$ sudo usermod -aG docker $USER
+```
+
+You will need to relog your user!
+Be careful, as this gives the specified user root equivalent privileges!
+
+Verify:
+
+```
+$ docker run hello-world
+```
+
 
 [If you finished all the above, continue with exercise >](exercise.md)
