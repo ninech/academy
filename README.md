@@ -1,8 +1,8 @@
 # nine Kubernetes Academy
 
-This is the repo for all the nine kubernetes academy exercises.
+This is the repo for all the nine Kubernetes academy exercises.
 
-It is recommend to clone(or download) this repo locally to get the template files.
+It is recommended to clone(or download) this repo locally to get the template files.
 To view the exercises and solutions, we recommend using the browser.
 
 ### Presentations:

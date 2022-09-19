@@ -1,12 +1,12 @@
 # 1
 
-Lets take a look at services. First of we need to create a deployment. Take a look at this [file](templates/2/1.yaml) `templates/2/1.yaml`.
+Let's take a look at services. First of we need to create a deployment. Take a look at this [file](templates/2/1.yaml) `templates/2/1.yaml`.
 Make sure you understand every line in it! If you have trouble ask the teacher.
 
 Create the deployment out of the file in your namespace on the nine managed GKE cluster.
-Check out what the the deployment created.
+Check out what the deployment created.
 
-Now lets expose our deployment to the outside world.
+Now let's expose our deployment to the outside world.
 
 Use the kubectl expose command. Create a LoadBalancer service! Not a ClusterIP service!!
 
@@ -23,7 +23,7 @@ Check out this [file](templates/2/3.yaml) `templates/2/3.yaml`.
 
 This is a dockersamples demo app from the dockercon 2018.
 The application has 3 microservices called db, words and web.
-It generates setences using the words in the db.
+It generates sentences using the words in the db.
 
 We assume that the app and the containers are configured properly.
 
@@ -62,7 +62,7 @@ You can find the solutions [here](solutions/2.md) `solutions/2.md`.
 # 8
 
 If you finish ahead of time, you can do this optional exercise.
-This is a similiar exercise to # 3.
+This is a similliar exercise to # 3.
 If you have your own containers ready, you can also try to get your own app to run on the cluster instead of this exercise.
 
 Check out this [file](templates/2/8.yaml) `templates/2/8.yaml`.

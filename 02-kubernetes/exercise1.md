@@ -5,13 +5,13 @@ https://support.nine.ch/categories/managed-gke
 
 # kubectl exercises
 
-In this exercise you will get familliar with kubectl since it is really important to master.
+In this exercise you will get familiar with kubectl since it is really important to master.
 Before we begin, take a quick look at the kubectl cheat sheet:
 https://kubernetes.io/docs/reference/kubectl/cheatsheet/
 
 # 1
 
-We covered what a kubernetes namespace is in the theory part of the course.
+We covered what a Kubernetes namespace is in the theory part of the course.
 If you want a reminder you can read about namespaces here: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 
 Kubernetes comes with a couple of default namespaces.
@@ -25,25 +25,25 @@ $ kubens
 ```
 
 You will see that you are in the default namespace.
-If you try to list anything in this namespace, you wil notice that you dont have the permissions.
+If you try to list anything in this namespace, you will notice that you don't have the permissions.
 ```
 $ kubectl get all
 ```
 
-Lets create our own namespace.
+Let's create our own namespace.
 This is a shared cluster, so please use the following convention: academy- firstname i.e. academy-max
 We need to use the kubectl create command for this.
-Hint: Use the -h flag for a example.
+Hint: Use the -h flag for an example.
 
 After you created the namespace try to see the details using the kubectl describe command.
-Finally use kubens and set it to your namespace you just created:
+Finally, use kubens and set it to your namespace you just created:
 ```
 $ kubens <your namespace>
 ```
 
 # 3
 
-Lets say that this namespace you just created is a development enviroment of our fictional app called "cool-app".
+Let's say that this namespace you just created is a development environment of our fictional app called "cool-app".
 
 It would maybe make sense to label that namespace.
 For this we need to edit the namespace using the kubectl edit command.
@@ -60,7 +60,7 @@ https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#syntax
 
 # 4
 
-If you do a kubectl get all, you obviously wont see anything, so lets create a pod!
+If you do a kubectl get all, you obviously won't see anything, so let's create a pod!
 
 We will need the kubectl run command for this. Again, like with every command check out kubectl run -h flag!
 
@@ -78,7 +78,7 @@ Also describe the pod using the kubectl describe command!
 
 # 5
 
-Now lets see if we can see the logs of the container running in our newly created pod.
+Now let's see if we can see the logs of the container running in our newly created pod.
 
 Use the kubectl logs command!
 
@@ -88,27 +88,27 @@ Set your namespace there and check out the pod.
 
 # 6
 
-Now lets delete the pod. Use the delete command!
+Now let's delete the pod. Use the delete command!
 Do a get command afterwards. What happens?
 
 # 7
 
-We have created now a pod directly, but usually we dont wanna create it directly.
-Lets create a deployment! Use the k8s.gcr.io/echoserver:1.4 image.
+We have created now a pod directly, but usually we don't want to create it directly.
+Let's create a deployment! Use the k8s.gcr.io/echoserver:1.4 image.
 
-When you create a Deployment, 3 ressources are deployed. Deployments, ReplicaSet and Pods. Check them all out. Make sure to understand what happens!
+When you create a Deployment, 3 resources are deployed. Deployments, ReplicaSet and Pods. Check them all out. Make sure to understand what happens!
 
 # 8
 
 When your app becomes more popular, you will need to scale. Luckily that is quite easy with k8s.
 When you described the deployment and the replicaset, you might have seen the replica field.
-Scale the deployment to 3 or more replicas and check out what happens to three ressources you described above.
+Scale the deployment to 3 or more replicas and check out what happens to three resources you described above.
 Use the scale kubectl command!
 
 # 9
 
-K8s is supposed to be self healing, right? Lets prove it. Delete any of the pods of the deployment.
-What happens? Checkout the events aswell the events with kubectl get events.
+K8s is supposed to be self-healing, right? Let's prove it. Delete any of the pods of the deployment.
+What happens? Checkout the events as well the events with kubectl get events.
 
 # 10
 
@@ -116,12 +116,12 @@ Delete the deployment
 
 # 11
 
-Until now you have created and deleted ressources using the kubectl commands.
-Now we are gonna use the actual ressource definitions, how you would do it in the real world.
+Until now, you have created and deleted resources using the kubectl commands.
+Now we are going to use the actual resource definitions, how you would do it in the real world.
 
 Check out this [file](templates/1/11.yaml) `templates/1/11.yaml`
 
-You will see a deployment ressource definition. Describe each line and write it down on the right behind the comment.
+You will see a deployment resource definition. Describe each line and write it down on the right behind the comment.
 
 # 12
 

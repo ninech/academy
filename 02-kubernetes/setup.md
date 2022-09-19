@@ -1,33 +1,6 @@
-# Install gcloud
-
-Make sure to have [gcloud](https://cloud.google.com/sdk/install) installed as you will need it later.
-We recommend using the installer: https://cloud.google.com/sdk/docs/downloads-interactive
-
-Login to gcloud with your ninegcp.ch account:
-
-```
-$ gcloud auth login
-```
-
-A browser window should automatically open up where you can now log in with your <name>@ninegcp.ch account that we sent you before the course.
-
 # Install kubectl
 
-To interact with a kubernetes cluster in a good and not clicky way, you should always use kubectl.
-
-We will install it with gcloud since you should still have it installed on your machine from the docker exercise.
-If not, check out the installation guide here:
-https://cloud.google.com/sdk/docs/downloads-interactive
-
-Check if gcloud is working properly:
-```
-$ gcloud version
-```
-
-Install kubectl with the following command:
-```
-$ gcloud components install kubectl
-```
+[Click here.](https://kubernetes.io/docs/tasks/tools/)
 
 # [Linux & Mac]kubectl autocomplete and alias
 
@@ -54,15 +27,34 @@ $ alias k=kubectl
 $ complete -F __start_kubectl k
 ```
 
-# Connecting to the nine managed GKE cluster
+# Install kubelogin
 
-Head over to runway, nine's UI of the nine managed GKE cluster, and log yourself in.
-https://runway.ninegcp.ch/
+[Click here.](https://github.com/int128/kubelogin#setup)
 
-On runway you will see a section called "Logging into the cluster" under the Google Kubernetes Engine tab.
-Execute the commands as shown in the section.
+You only need to install it. The kubeconfig already is configured properly.
 
-# [Linux & Mac]Install kubectx and kubens
+# Connecting to cluster
+
+Copy the content of the kubeconfig to `~/.kube/config` or export it `export
+KUBECONFIG=<path-to-file>kubeconfig`
+
+# Test connection
+
+Test your connection by using this command:
+```
+$ kubectl get namespace
+cattle-fleet-system           Active   4h22m
+cattle-impersonation-system   Active   4h23m
+cattle-system                 Active   4h25m
+default                       Active   4h25m
+kube-node-lease               Active   4h25m
+kube-public                   Active   4h25m
+kube-system                   Active   4h25m
+local                         Active   4h23m
+nine-system                   Active   4h22m
+```
+
+# Install kubectx and kubens
 
 Finally the last piece that is missing:
 https://github.com/ahmetb/kubectx
@@ -70,7 +62,7 @@ https://github.com/ahmetb/kubectx
 Install it and try it with the following command:
 ```
 $ kubectx
-gke_nine-XXXXXX_europe-west6_academy
+nine-academy
 ```
 
 # Continue to the exercises

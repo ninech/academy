@@ -1,6 +1,6 @@
 # Dockerfile
 
-In this exercise you will refresh your Dockerfile skills.
+In this exercise you will refresh your Docker skills.
 
 ## 1. Analyze a Dockerfile
 
@@ -31,13 +31,13 @@ What other benefits can you think of when using multi-stage containers?
 
 Open the exercise 3 [folder](templates/3) `templates/3`.
 
-The small python programm you see, just prints the files from a directory you give as a parameter.
+The small python program you see, just prints the files from a directory you give as a parameter.
 
 Open the Dockerfile in the folder.
 You can see that there are comments describing what the direct line under it does.
 There is also a small python file, which just prints all files of the directory given in the parameter.
 
-Try to implement the Dockerfile and get it to run. If sucessfully built and ran, you should see some output in your console.
+Try to implement the Dockerfile and get it to run. If successfully built and ran, you should see some output in your console.
 
 ## 4. Solutions
 

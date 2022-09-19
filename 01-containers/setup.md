@@ -54,7 +54,7 @@ CONTAINER ID     IMAGE           COMMAND      CREATED            STATUS
 
 ## Sudo
 
-As you noticed, the docer commands require you to be root.
+As you noticed, the docker commands require you to be root.
 To not type sudo always, considering doing the following on Linux:
 
 ```
@@ -62,7 +62,7 @@ $ sudo groupadd docker
 $ sudo usermod -aG docker $USER
 ```
 
-You will need to relog your user or do the follwing:
+You will need to relog your user or do the following:
 ```
 $ newgrp docker
 ```
