@@ -1,8 +1,3 @@
-# Important links
-
-If you get stuck anywhere, try to find help here or ask the teacher:
-https://support.nine.ch/categories/managed-gke
-
 # kubectl exercises
 
 In this exercise you will get familiar with kubectl since it is really important to master.
@@ -130,10 +125,7 @@ Create a deployment out of the file above. Use the kubectl apply command.
 # 13 
 
 Change the replica count in the file and apply it again. What happens?
-
-# 14
-
-Delete the deployment.
+Don't delete the deployment just yet.
 
 # Solutions
 

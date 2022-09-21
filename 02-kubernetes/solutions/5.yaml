@@ -44,7 +44,6 @@ spec:
   ports:
     - port: 5678
 ---
-# if you need help: https://kubernetes.io/docs/concepts/services-networking/ingress/#the-ingress-resource
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -58,8 +57,14 @@ spec:
         - path: /apple
           pathType: ImplementationSpecific
           backend:
-          # reference the apple service and port
+            service:
+              name: apple-service
+              port:
+                number: 5678
         - path: /banana
           pathType: ImplementationSpecific
           backend:
-          # reference the banana service and port
+            service:
+              name: banana-service
+              port:
+                number: 5678

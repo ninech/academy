@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    app.kubernetes.io/name: proxy
+spec:
+  containers:
+  - name: nginx
+    image: nginx:stable
+    ports:
+      - containerPort: 80
+        name: http-web-svc
+
+---
+# Create a service that targets the pod above. The protocol is TCP and the port
+# should be 80. What is the targetport?
+apiVersion: v1
+kind: Service
+metadata:
+spec:
