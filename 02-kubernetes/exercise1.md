@@ -77,10 +77,6 @@ Now let's see if we can see the logs of the container running in our newly creat
 
 Use the kubectl logs command!
 
-Optional:
-If you wanna maybe see the k8s dashboard in action, you can open runway again and in the Services tab, you can follow the link of to the k8s dashboard.
-Set your namespace there and check out the pod.
-
 # 6
 
 Now let's delete the pod. Use the delete command!
