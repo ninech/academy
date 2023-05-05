@@ -41,4 +41,20 @@ Uninstall the helm chart
 
 # 5
 
+Now it's time to create our own helm chart. Use the helm create command for
+this.
+
+We can now edit the values yaml to customize our chart. Do the following:
+- set the replicas to 3 and enable autoscaling.
+- enable the ingress and remove the host, also set the path to be /<yourname>
+
+Create a helm release out of your chart.
+
+Controlling:
+- Can you curl the ingress properly?
+- How many replicas are deployed? Why is that amount deployed? Discuss your
+  reasoning in the class.
+
+# Solutions
+
 Check the [solutions](solutions/3.md) `solutions/3.md`
