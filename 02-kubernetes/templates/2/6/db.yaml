@@ -1,0 +1,111 @@
+# use the right apiversion and kind for deploying the db containers
+
+
+metadata:
+  name: db
+  labels:
+    app: db
+spec:
+  # use a selector match for the label "app: db"
+
+
+
+  template:
+    metadata:
+      labels:
+        app: db
+    spec:
+      containers:
+        - name: db
+          # use the image "image: postgres:10.0-alpine"
+
+          # use containerPort 5432
+
+
+          volumeMounts:
+            # add the name of the volume that you give at the bottom of the deployment
+            - name:
+              mountPath: /docker-entrypoint-initdb.d
+      volumes:
+          # give the volume a name
+        - name:
+          configMap:
+            # add the name of the configmap at the bottom of the file
+            name:
+---
+# use the right apiversion and kind for db service
+
+metadata:
+  name: db
+  labels:
+    app: db
+spec:
+  ports:
+    # use the the targetPort from above and make this service available on port
+    # 5432 and give it the name db
+    - 
+  # use the right selector for the above deployment
+
+---
+# This configmap is needed to load in the data, you dont need to change anything here
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: db-schema
+data:
+  words.sql: |
+    CREATE TABLE nouns (word TEXT NOT NULL);
+    CREATE TABLE verbs (word TEXT NOT NULL);
+    CREATE TABLE adjectives (word TEXT NOT NULL);
+
+    INSERT INTO nouns(word) VALUES
+      ('cloud'),
+      ('elephant'),
+      ('gø language'),
+      ('laptøp'),
+      ('cøntainer'),
+      ('micrø-service'),
+      ('turtle'),
+      ('whale'),
+      ('gøpher'),
+      ('møby døck'),
+      ('server'),
+      ('bicycle'),
+      ('viking'),
+      ('mermaid'),
+      ('fjørd'),
+      ('legø'),
+      ('flødebolle'),
+      ('smørrebrød');
+
+    INSERT INTO verbs(word) VALUES
+      ('will drink'),
+      ('smashes'),
+      ('smøkes'),
+      ('eats'),
+      ('walks tøwards'),
+      ('løves'),
+      ('helps'),
+      ('pushes'),
+      ('debugs'),
+      ('invites'),
+      ('hides'),
+      ('will ship');
+
+    INSERT INTO adjectives(word) VALUES
+      ('the exquisite'),
+      ('a pink'),
+      ('the røtten'),
+      ('a red'),
+      ('the serverless'),
+      ('a brøken'),
+      ('a shiny'),
+      ('the pretty'),
+      ('the impressive'),
+      ('an awesøme'),
+      ('the famøus'),
+      ('a gigantic'),
+      ('the gløriøus'),
+      ('the nørdic'),
+      ('the welcøming'),
+      ('the deliciøus');

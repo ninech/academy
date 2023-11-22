@@ -1,113 +1,181 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: db
-  labels:
-    app: words-db
-spec:
-  selector:
-    matchLabels:
-      app: words-db
-  template:
-    metadata:
-      labels:
-        app: words-db
-    spec:
-      containers:
-      - name: db
-        image: dockersamples/k8s-wordsmith-db
-        ports:
-        - containerPort: 5432
-          name: db
----
 apiVersion: v1
 kind: Service
 metadata:
   name: db
   labels:
-    app: words-db
+    app: db
 spec:
   ports:
     - port: 5432
       targetPort: 5432
       name: db
   selector:
-    app: words-db
-  type: ClusterIP
+    app: db
 ---
-#######################################################
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: words
+  name: db
   labels:
-    app: words-api
+    app: db
 spec:
-  replicas: 5
   selector:
     matchLabels:
-      app: words-api  
+      app: db
   template:
     metadata:
       labels:
-        app: words-api
+        app: db
     spec:
       containers:
-      - name: words
-        image: dockersamples/k8s-wordsmith-api
-        ports:
-        - containerPort: 8080
-          name: api
+        - name: db
+          image: postgres:10.0-alpine
+          ports:
+            - containerPort: 5432
+              name: db
+          volumeMounts:
+            - name: db-schema
+              mountPath: /docker-entrypoint-initdb.d
+      volumes:
+        - name: db-schema
+          configMap:
+            name: db-schema
 ---
+apiVersion: v1
+data:
+  words.sql: |
+    CREATE TABLE nouns (word TEXT NOT NULL);
+    CREATE TABLE verbs (word TEXT NOT NULL);
+    CREATE TABLE adjectives (word TEXT NOT NULL);
+
+    INSERT INTO nouns(word) VALUES
+      ('cloud'),
+      ('elephant'),
+      ('gø language'),
+      ('laptøp'),
+      ('cøntainer'),
+      ('micrø-service'),
+      ('turtle'),
+      ('whale'),
+      ('gøpher'),
+      ('møby døck'),
+      ('server'),
+      ('bicycle'),
+      ('viking'),
+      ('mermaid'),
+      ('fjørd'),
+      ('legø'),
+      ('flødebolle'),
+      ('smørrebrød');
+
+    INSERT INTO verbs(word) VALUES
+      ('will drink'),
+      ('smashes'),
+      ('smøkes'),
+      ('eats'),
+      ('walks tøwards'),
+      ('løves'),
+      ('helps'),
+      ('pushes'),
+      ('debugs'),
+      ('invites'),
+      ('hides'),
+      ('will ship');
+
+    INSERT INTO adjectives(word) VALUES
+      ('the exquisite'),
+      ('a pink'),
+      ('the røtten'),
+      ('a red'),
+      ('the serverless'),
+      ('a brøken'),
+      ('a shiny'),
+      ('the pretty'),
+      ('the impressive'),
+      ('an awesøme'),
+      ('the famøus'),
+      ('a gigantic'),
+      ('the gløriøus'),
+      ('the nørdic'),
+      ('the welcøming'),
+      ('the deliciøus');
+kind: ConfigMap
+metadata:
+  name: db-schema
+---
+#######################################################
 apiVersion: v1
 kind: Service
 metadata:
-  name: words
+  name: api
   labels:
-    app: words-api
+    app: api
 spec:
   ports:
     - port: 8080
       targetPort: 8080
       name: api
   selector:
-    app: words-api
-  type: ClusterIP
+    app: api
+  clusterIP: None
 ---
-#######################################################
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: web
+  name: api
   labels:
-    app: words-web
+    app: api
 spec:
+  replicas: 5
   selector:
     matchLabels:
-      app: words-web  
+      app: api
   template:
     metadata:
       labels:
-        app: words-web
+        app: api
     spec:
       containers:
-      - name: web
-        image: dockersamples/k8s-wordsmith-web
-        ports:
-        - containerPort: 80
-          name: words-web
+        - name: api
+          image: dockersamples/wordsmith-api
+          ports:
+            - containerPort: 8080
+              name: api
 ---
+#######################################################
 apiVersion: v1
 kind: Service
 metadata:
   name: web
   labels:
-    app: words-web
+    app: web
 spec:
   ports:
-    - port: 8081
+    - port: 8080
       targetPort: 80
       name: web
   selector:
-    app: words-web
+    app: web
   type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web
+  labels:
+    app: web
+spec:
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+        - name: web
+          image: dockersamples/wordsmith-web
+          ports:
+            - containerPort: 80
+              name: web

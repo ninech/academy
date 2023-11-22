@@ -47,6 +47,8 @@ Take a look at this [file](templates/2/5.yaml) `templates/2/5.yaml`.
 Deploy the two services and the two pods and the ingress.
 However, first you need to fix the ingress resource.
 
+Make sure to add the path properly.
+
 Ask your teacher for the URL of the ingress controller.
 How can you access your apps? What is the advantage of the ingress instead of
 LoadBalancer?
@@ -56,16 +58,19 @@ Delete the ingress and the other resources.
 # 6
 
 Until now, we worked with simple applications. Now, it is time for a big exercise.
-Check out this [file](templates/2/6.yaml) `templates/2/6.yaml`.
+Check out this [directory](templates/2/6/) `templates/2/6/`.
 
-This is a dockersamples demo app from the dockercon 2018.
-The application has 3 microservices called db, words and web.
+This is a dockersamples demo app from the dockercon .
+The application has 3 microservices called db, api and web.
 It generates sentences using the words in the db.
 
 We assume that the app and the containers are configured properly.
 
-Your job is to finish all the instructions that are in the TODO comments.
+Your job is to finish all the instructions that are in the comments.
 Use your own created namespace for this exercise still.
+
+Start with the api.yaml and go to the db.yaml and then to the web.yaml.
+The exercises get progressively harder.
 
 If everything is working properly, words should appear in your browser.
 You should also see the IP where the word is coming from.

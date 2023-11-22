@@ -1,0 +1,43 @@
+# use the right apiversion and kind for deploying the api containers
+apiVersion:
+kind:
+metadata:
+  name: api
+  # add the label "app: api"
+  labels:
+spec:
+  # add 5 replicas
+  replicas:
+  selector:
+    # match for the label "app: api"
+    matchLabels:
+  template:
+    metadata:
+      # add the label "app: api"
+      labels:
+    spec:
+      containers:
+        - name: api
+          # use the image "dockersamples/wordsmith-api"
+          image:
+          ports:
+            # use the containerport 8080
+            - containerPort:
+              name: api
+---
+# use the right apiversion and kind for api service
+apiVersion:
+kind:
+metadata:
+  name: api
+  # add the label "app: api"
+  labels:
+spec:
+  ports:
+    # use the port 8080 and the targetPort from the containerPort above
+    - port: 8080
+      targetPort: 8080
+      name: api
+  # use the selector "app: api"
+  selector:
+  clusterIP: None

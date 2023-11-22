@@ -1,0 +1,26 @@
+# write your own deployment with the following values:
+
+# name: web
+# labels= app: web
+
+# selector: matchLabels = app: web
+
+# template:
+#   labels= app: web
+#   container:
+#     name: web
+#     image: dockersamples/wordsmith-web
+#     ports: containerPort 80, name: web
+
+
+---
+# write your own service for the web deployment
+
+# name: web
+# labels= app: web
+
+# selector= app: web
+# type: LoadBalancer
+
+# ports:
+#   targetPort = from above containerPort, port = 8080, name = web

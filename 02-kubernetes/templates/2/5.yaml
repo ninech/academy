@@ -60,7 +60,8 @@ spec:
             pathType: ImplementationSpecific
             backend:
             # reference the apple service and port
-            # use this path: /<yourname>apple
+
+            # # use this path: /<yourname>banana
           - path:
             pathType: ImplementationSpecific
             backend:
